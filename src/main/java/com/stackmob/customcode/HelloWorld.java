@@ -51,8 +51,7 @@ public class HelloWorld implements CustomCodeMethod {
 
   public ResponseToProcess execute(ProcessedAPIRequest request, 
         SDKServiceProvider serviceProvider) {
-     String model = "";
-    String make = "";
+     String name = "";
 
     LoggerService logger = serviceProvider.getLoggerService(HelloWorld.class);
     // JSON object gets passed into the StackMob Logs
@@ -67,18 +66,16 @@ public class HelloWorld implements CustomCodeMethod {
       JSONObject jsonObject = (JSONObject) obj;
 
       // Fetch the values passed in by the user from the body of JSON
-      model = (String) jsonObject.get("model");
-      make = (String) jsonObject.get("make");
+      name = (String) jsonObject.get("name");
     } catch (ParseException pe) {
       logger.error(pe.getMessage(), pe);
       return badRequestResponse(errMap);
     }      
-   if (hasNulls(model, make)){
+   if (hasNulls(name)){
       return badRequestResponse(errMap);
     }
 
-    feedback.put("firstName", new SMString(model));
-    feedback.put("lastName", new SMString(make));
+    feedback.put("name", new SMString(name));
    DataService ds = serviceProvider.getDataService();
     try {
       ds.createObject("Contact", new SMObject(feedback));
