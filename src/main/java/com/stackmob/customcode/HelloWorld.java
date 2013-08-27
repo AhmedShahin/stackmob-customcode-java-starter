@@ -46,7 +46,7 @@ public class HelloWorld implements CustomCodeMethod {
   @Override
   public List<String> getParams() {
     // Please note that the strings `user` and `username` are unsuitable for parameter names
-    return Arrays.asList("name","ahmed");
+    return Arrays.asList("name","sm_owner");
   }
 
   public ResponseToProcess execute(ProcessedAPIRequest request, 
