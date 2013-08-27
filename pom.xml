@@ -29,6 +29,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <customcode.version>0.6.2</customcode.version>
+    <customcode.dev.version>0.1.7</customcode.dev.version>
   </properties>
     
   <dependencies>
@@ -47,6 +48,12 @@
       <groupId>com.googlecode.json-simple</groupId>
       <artifactId>json-simple</artifactId>
       <version>1.1.1</version>
+    </dependency>
+    <dependency>
+      <groupId>com.stackmob</groupId>
+      <artifactId>stackmob-customcode-dev_2.10</artifactId>
+      <version>${customcode.dev.version}</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
     
@@ -75,7 +82,7 @@
             <configuration>
               <transformers>
                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                  <mainClass>com.stackmob.customcode.EntryPointExtender</mainClass>
+                  <mainClass>com.stackmob.example.EntryPointExtender</mainClass>
                 </transformer>
               </transformers>
               <createDependencyReducedPom>false</createDependencyReducedPom>
