@@ -46,12 +46,13 @@ public class HelloWorld implements CustomCodeMethod {
   @Override
   public List<String> getParams() {
     // Please note that the strings `user` and `username` are unsuitable for parameter names
-    return new ArrayList<String>();
+    return Arrays.asList("name","ahmed");
   }
 
   public ResponseToProcess execute(ProcessedAPIRequest request, 
         SDKServiceProvider serviceProvider) {
      String name = "";
+     String sm_owner="";
 
     LoggerService logger = serviceProvider.getLoggerService(HelloWorld.class);
     // JSON object gets passed into the StackMob Logs
@@ -67,15 +68,17 @@ public class HelloWorld implements CustomCodeMethod {
 
       // Fetch the values passed in by the user from the body of JSON
       name = (String) jsonObject.get("name");
+      sm_owner=(String) jsonObject.get("sm_owner");
     } catch (ParseException pe) {
       logger.error(pe.getMessage(), pe);
       return badRequestResponse(errMap);
     }      
-   if (hasNulls(name)){
+   if (hasNulls(name,sm_owner)){
       return badRequestResponse(errMap);
     }
 
     feedback.put("name", new SMString(name));
+    feedback.put("sm_owner", new SMString(sm_owner));
    DataService ds = serviceProvider.getDataService();
     try {
       ds.createObject("Contact", new SMObject(feedback));
