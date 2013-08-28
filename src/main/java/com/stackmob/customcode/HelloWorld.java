@@ -82,7 +82,7 @@ public class HelloWorld implements CustomCodeMethod {
       logger.error(pe.getMessage(), pe);
       return badRequestResponse(errMap);
     }      
-   if (hasNulls(firstName.lastName,company,email,phone,fullName)){
+   if (hasNulls(firstName,lastName,company,email,phone,fullName)){
       return badRequestResponse(errMap);
     }
 
