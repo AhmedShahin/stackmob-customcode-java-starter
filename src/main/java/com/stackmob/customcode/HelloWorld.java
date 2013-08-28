@@ -46,13 +46,17 @@ public class HelloWorld implements CustomCodeMethod {
   @Override
   public List<String> getParams() {
     // Please note that the strings `user` and `username` are unsuitable for parameter names
-    return Arrays.asList("name","sm_owner");
+    return Arrays.asList("firstName","lastName","fullName","company","email","phone");
   }
 
   public ResponseToProcess execute(ProcessedAPIRequest request, 
         SDKServiceProvider serviceProvider) {
-     String name = "";
-     String sm_owner="";
+     String firstName = "";
+     String lastName = "";
+     String fullName = "";
+     String company = "";
+     String email = "";
+     String phone = "";
 
     LoggerService logger = serviceProvider.getLoggerService(HelloWorld.class);
     // JSON object gets passed into the StackMob Logs
@@ -67,21 +71,31 @@ public class HelloWorld implements CustomCodeMethod {
       JSONObject jsonObject = (JSONObject) obj;
 
       // Fetch the values passed in by the user from the body of JSON
-      name = (String) jsonObject.get("name");
-      sm_owner=(String) jsonObject.get("sm_owner");
+      firstName = (String) jsonObject.get("firstName");
+      lastName = (String) jsonObject.get("lastName");
+      company = (String) jsonObject.get("company");
+      email = (String) jsonObject.get("email");
+      phone = (String) jsonObject.get("phone");
+      fullName = (String) jsonObject.get("fullName");
+
     } catch (ParseException pe) {
       logger.error(pe.getMessage(), pe);
       return badRequestResponse(errMap);
     }      
-   if (hasNulls(name,sm_owner)){
+   if (hasNulls(firstName.lastName,company,email,phone,fullName)){
       return badRequestResponse(errMap);
     }
 
-    feedback.put("name", new SMString(name));
-    feedback.put("sm_owner", new SMString(sm_owner));
+    feedback.put("Nour", new SMString(firstName));
+    feedback.put("Hesham", new SMString(lastName));
+    feedback.put("Hospital", new SMString(company));
+    feedback.put("nino@yahoo.com", new SMString(email));
+    feedback.put("222222222", new SMString(phone));
+    feedback.put("Nour Hesham", new SMString(fullName));
+
    DataService ds = serviceProvider.getDataService();
     try {
-      ds.createObject("Contact", new SMObject(feedback));
+      ds.createObject("ContactPilot", new SMObject(feedback));
     }
     catch (InvalidSchemaException ise) {
       return internalErrorResponse("invalid_schema", ise, errMap);  // http 500 - internal server error
