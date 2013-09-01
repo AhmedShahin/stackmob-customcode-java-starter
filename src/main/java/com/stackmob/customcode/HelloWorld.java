@@ -86,12 +86,12 @@ public class HelloWorld implements CustomCodeMethod {
       return badRequestResponse(errMap);
     }
 
-    feedback.put("Nour", new SMString(firstName));
-    feedback.put("Hesham", new SMString(lastName));
-    feedback.put("Hospital", new SMString(company));
-    feedback.put("nino@yahoo.com", new SMString(email));
-    feedback.put("222222222", new SMString(phone));
-    feedback.put("Nour Hesham", new SMString(fullName));
+    feedback.put(firstName, new SMString(firstName));
+    feedback.put(lastNAme, new SMString(lastName));
+    feedback.put(company, new SMString(company));
+    feedback.put(email, new SMString(email));
+    feedback.put(phone, new SMString(phone));
+    feedback.put(fullName, new SMString(fullName));
 
    DataService ds = serviceProvider.getDataService();
     try {
