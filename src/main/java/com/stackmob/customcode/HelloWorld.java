@@ -51,12 +51,12 @@ public class HelloWorld implements CustomCodeMethod {
 
   public ResponseToProcess execute(ProcessedAPIRequest request, 
         SDKServiceProvider serviceProvider) {
-     String firstName = "";
-     String lastName = "";
-     String fullName = "";
-     String company = "";
-     String email = "";
-     String phone = "";
+     String firstName = "first";
+     String lastName = "last";
+     String fullName = "full";
+     String company = "comp";
+     String email = "em";
+     String phone = "pho";
 
     LoggerService logger = serviceProvider.getLoggerService(HelloWorld.class);
     // JSON object gets passed into the StackMob Logs
@@ -85,6 +85,13 @@ public class HelloWorld implements CustomCodeMethod {
    if (hasNulls(firstName,lastName,company,email,phone,fullName)){
       return badRequestResponse(errMap);
     }
+    
+    firstName = "first";
+    lastName = "last";
+    fullName = "full";
+    company = "comp";
+    email = "em";
+    phone = "pho";
 
     feedback.put("firstName", new SMString(firstName));
     feedback.put("lastName", new SMString(lastName));
