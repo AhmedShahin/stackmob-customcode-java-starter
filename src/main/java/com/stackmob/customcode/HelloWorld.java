@@ -87,7 +87,7 @@ public class HelloWorld implements CustomCodeMethod {
     }
 
     feedback.put(firstName, new SMString(firstName));
-    feedback.put(lastNAme, new SMString(lastName));
+    feedback.put(lastName, new SMString(lastName));
     feedback.put(company, new SMString(company));
     feedback.put(email, new SMString(email));
     feedback.put(phone, new SMString(phone));
